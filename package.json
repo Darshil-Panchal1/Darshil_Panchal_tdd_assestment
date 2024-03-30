@@ -1,0 +1,24 @@
+{
+  "name": "tdd_assestment",
+  "version": "1.0.0",
+  "description": "Incubyte Technical Assestment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darshil-Panchal1/tdd_assestment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darshil-Panchal1/tdd_assestment/issues"
+  },
+  "homepage": "https://github.com/Darshil-Panchal1/tdd_assestment#readme",
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0"
+  }
+}
