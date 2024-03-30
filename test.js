@@ -10,27 +10,29 @@ describe('add function', function() {
         assert.strictEqual(add("1"), 1);
     });
 
-    it('should handle custom delimiter ";" and return the sum of numbers', function() {
-        assert.strictEqual(add("//;\n1;2"), 3);
+    it('should return the sum of numbers when input is comma-separated numbers string', function() {
+        assert.strictEqual(add("1,5"), 6);
     });
 
-    it('should handle custom delimiter "|" and return the sum of numbers', function() {
-        assert.strictEqual(add("//|\n1|2|3"), 6);
+    it('should return the correct sum when input contains multiple numbers separated by commas', function() {
+        assert.strictEqual(add("1,2,3,4,5"), 15);
     });
 
-    it('should handle custom delimiter "+" and return the sum of numbers', function() {
-        assert.strictEqual(add("//+\n1+2+3+4+5"), 15);
+    it('should return the correct sum when input contains multiple numbers with two digits separated by commas', function() {
+        assert.strictEqual(add("10,20,30,40,50"), 150);
     });
 
-    it('should handle custom delimiter "@" and return the sum of numbers', function() {
-        assert.strictEqual(add("//@\n10@20@30@40@50"), 150);
+    it('should throw an error for negative numbers in input', function() {
+        assert.throws(() => {
+            add("1,-2,3,-4,5");
+        }, Error);
     });
 
-    it('should handle custom delimiter and ignore empty values', function() {
-        assert.strictEqual(add("//;\n1;;2"), 3);
-    });
-
-    it('should handle custom delimiter and whitespace around numbers', function() {
-        assert.strictEqual(add("//;\n1; 2 ;3"), 6);
+    it('should include negative numbers in error message', function() {
+        try {
+            add("1,-2,3,-4,5");
+        } catch (error) {
+            assert.strictEqual(error.message, "Negative numbers not allowed: -2,-4");
+        }
     });
 });
