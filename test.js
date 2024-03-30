@@ -10,23 +10,27 @@ describe('add function', function() {
         assert.strictEqual(add("1"), 1);
     });
 
-    it('should handle newline as delimiter and return the sum of numbers', function() {
-        assert.strictEqual(add("1\n5"), 6);
+    it('should handle custom delimiter ";" and return the sum of numbers', function() {
+        assert.strictEqual(add("//;\n1;2"), 3);
     });
 
-    it('should handle newline and comma as delimiters and return the sum of numbers', function() {
-        assert.strictEqual(add("1\n2,3"), 6);
+    it('should handle custom delimiter "|" and return the sum of numbers', function() {
+        assert.strictEqual(add("//|\n1|2|3"), 6);
     });
 
-    it('should handle newline and comma as delimiters, ignoring empty values, and return the sum of numbers', function() {
-        assert.strictEqual(add("1,2\n3,4\n5"), 15);
+    it('should handle custom delimiter "+" and return the sum of numbers', function() {
+        assert.strictEqual(add("//+\n1+2+3+4+5"), 15);
     });
 
-    it('should handle newline and comma as delimiters, and return NaN if input contains invalid format ("1,\n")', function() {
-        assert.strictEqual(isNaN(add("1,\n")), true);
+    it('should handle custom delimiter "@" and return the sum of numbers', function() {
+        assert.strictEqual(add("//@\n10@20@30@40@50"), 150);
     });
 
-    it('should handle whitespace around numbers and ignore them', function() {
-        assert.strictEqual(isNaN(add("1, \n")), true);
+    it('should handle custom delimiter and ignore empty values', function() {
+        assert.strictEqual(add("//;\n1;;2"), 3);
+    });
+
+    it('should handle custom delimiter and whitespace around numbers', function() {
+        assert.strictEqual(add("//;\n1; 2 ;3"), 6);
     });
 });
